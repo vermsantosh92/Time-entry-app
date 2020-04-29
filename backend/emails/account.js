@@ -13,8 +13,11 @@ const sendWelcomeEmail = (email, name)=>{
       subject : "Thanks for Joining us, we're excited you're here!!",
       text :
 
-      ` Welcome to the app, ${email}
-  we are so happy to have you! let's remove some busy work from your day
+      `Welcome to the App, ${email}
+ we are so happy to have you! let's remove some
+ busy work from your day....
+
+   Cheers!!
 
       `
     })
