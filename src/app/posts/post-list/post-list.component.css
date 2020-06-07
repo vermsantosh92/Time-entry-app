@@ -29,3 +29,13 @@ mat-card{
   margin-top: 15%;
 
 }
+
+countdown{
+  border: 5px none rgba(92,74,164,0.14);
+   width: 720px;
+   margin: 0 auto;
+   padding: 10px;
+   color: #1a1a1a;
+   background-color: #f2f1ed;
+
+}

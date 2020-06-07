@@ -1,32 +1,25 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const sendWelcomeEmail = require('../emails/account')
 
-exports.createUser = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then(hash => {
-    const user = new User({
-      email: req.body.email,
-      password: hash
-    })
-
-      user.save()
-      .then(result => {
-        res.status(201).json({
-
-          message: "User created!",
-          result: result,
-
-        })
-
-      })
-      .catch(err => {
-        res.status(500).json({
-          message: "Invalid authentication credentials!"
-        });
+exports.createUser = async (req, res, next) => {
+      const user = new User({
+        email : req.body.email,
+        password : req.body.password
       });
-  });
-}
 
+      try{
+           await user.save();
+           sendWelcomeEmail(user.email)
+           res.status(201).send({user})
+      }
+
+      catch(e){
+        res.status(400).send(e)
+      }
+
+}
 
 exports.loginUser = (req, res, next) => {
   let fetchedUser;

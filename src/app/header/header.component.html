@@ -1,11 +1,11 @@
 <mat-toolbar>
   <span>
-    <a routerLink="/">Post</a>
+    <a routerLink="/">Task</a>
   </span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">Create Task</a>
     </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>

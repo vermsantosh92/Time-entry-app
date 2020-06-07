@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { getTestBed } from '@angular/core/testing';
 import { Post } from './post.model';
 import { Injectable } from '@angular/core';
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class PostService{
  private  myPosts : Post[] = []
  private postSubject = new Subject <{posts : Post[], postCount : number}>()
- url = "http://localhost:3000/api/posts"
+ url = environment.apiUrl + "/api/posts";
 
  constructor(public http : HttpClient, private router : Router){}
 
@@ -24,10 +25,11 @@ export class PostService{
         .pipe(map((postData)=>{
           return {posts : postData.post.map(post=>{
             return{
-              title : post.title,
-              content : post.content,
+              taskName : post.taskName,
+              projectName : post.projectName,
               id : post._id,
-              imagePath : post.imagePath,
+              startTIme : post.startTIme,
+              endTime : post.endTime
 
             }
           }), maxPosts : postData.maxPost}
@@ -47,21 +49,23 @@ export class PostService{
     getPost(id:string){
         return this.http.get<{
           _id : string;
-          title : string;
-          content : string;
-          imagePath : string;
-           creater : string;
+          taskName : string;
+          projectName : string;
+          startTime : string;
+           endTime : string;
           }
            >(this.url +'/' + id)
     }
 
-    onAddPost(title : string, content: string, image : File){
+    onAddPost(taskName : string, projectName: string, startTime : string, endTime : string){
 
       // const post = { id : null ,title : title,content: content}
       const postData = new FormData();
-      postData.append("title" , title)
-      postData.append("content" , content),
-      postData.append("image", image, title)
+      postData.append("taskName" , taskName)
+      postData.append("projectName" , projectName),
+      postData.append("startTime", startTime),
+      postData.append("endTime", endTime),
+
 
          this.http.post<{message : string , post : Post}>(this.url,postData)
          .subscribe((res)=>{
@@ -71,32 +75,32 @@ export class PostService{
 
     };
 
-    updatePost(id:string,title : string, content : string, image : File | string){
-        //  const post : Post = {id : id, title : title, content : content, imagePath : null}
-         let postData : Post | FormData
-        if(typeof(image)=== 'object'){
-              postData = new FormData();
-              postData.append("id",id)
-             postData.append("title", title);
-             postData.append("content", content);
-             postData.append("image", image, title);
+    // updatePost(id:string,taskName : string, projectName : string, startTime :string, endTime : string){
+    //     //  const post : Post = {id : id, title : title, content : content, imagePath : null}
+    //      let postData : Post | FormData
+    //     if(typeof(image)=== 'object'){
+    //           postData = new FormData();
+    //           postData.append("id",id)
+    //          postData.append("title", title);
+    //          postData.append("content", content);
+    //          postData.append("image", image, title);
 
-        }
-        else{
-              postData = {
-               id : id ,
-               title : title,
-               content : content,
-               imagePath : image,
-               creater : null
-             }
-        }
-         this.http.put(this.url + id ,postData)
-         .subscribe(response=>{
+    //     }
+    //     else{
+    //           postData = {
+    //            id : id ,
+    //            title : title,
+    //            content : content,
+    //            imagePath : image,
+    //            creater : null
+    //          }
+    //     }
+    //      this.http.put(this.url + id ,postData)
+    //      .subscribe(response=>{
 
-           this.router.navigate(["/"])
-         })
-    }
+    //        this.router.navigate(["/"])
+    //      })
+    // }
 
     onDeletePost(postId : string){
       return this.http.delete(this.url+'/'+ postId )

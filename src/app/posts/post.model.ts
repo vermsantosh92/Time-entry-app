@@ -1,7 +1,8 @@
 export interface Post {
   id: string;
-  title: string;
-  content: string;
-  imagePath: string;
-  creator: string;
+  taskName: string;
+  projectName: string;
+  startTime: string;
+  endTime: string;
+
 }

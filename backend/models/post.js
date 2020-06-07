@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  imagePath: { type: String, required: true },
-  creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
+  taskName: { type: String, required: true },
+  projectName: { type: String, required: true },
+  startTime: { type: String, required: true },
+  endTime:  { type: String, required: true },
 });
 
 module.exports = mongoose.model("Post", postSchema);

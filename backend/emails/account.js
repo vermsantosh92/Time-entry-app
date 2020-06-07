@@ -1,6 +1,6 @@
 
 const sgMail = require('@sendgrid/mail');
-const sendGridAPIKey = "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";
+const sendGridAPIKey = "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";
 
 
 sgMail.setApiKey(sendGridAPIKey);
@@ -8,7 +8,7 @@ sgMail.setApiKey(sendGridAPIKey);
 
 const sendWelcomeEmail = (email, name)=>{
     sgMail.send({
-      to : "email",
+      to : email,
       from : 'santosh.verma.92@outlook.com',
       subject : "Thanks for Joining us, we're excited you're here!!",
       text :

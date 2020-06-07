@@ -24,11 +24,11 @@ export class PostsService {
           return {
             posts: postData.posts.map(post => {
               return {
-                title: post.title,
-                content: post.content,
+                taskName: post.taskName,
+                projectName: post.projectName,
                 id: post._id,
-                imagePath: post.imagePath,
-                creator: post.creator
+                startTime: post.startTime,
+                endTime: post.endTime
               };
             }),
             maxPosts: postData.maxPosts
@@ -51,18 +51,19 @@ export class PostsService {
   getPost(id: string) {
     return this.http.get<{
       _id: string;
-      title: string;
-      content: string;
-      imagePath: string;
-      creator: string;
+      taskName: string;
+      projectName: string;
+      startTime: string;
+      endTime: string;
     }>("http://localhost:3000/api/posts/" + id);
   }
 
-  addPost(title: string, content: string, image: File) {
+  addPost(taskName: string, projectName: string, startTime: string, endTime : string) {
     const postData = new FormData();
-    postData.append("title", title);
-    postData.append("content", content);
-    postData.append("image", image, title);
+    postData.append("taskName", taskName);
+    postData.append("projectName", projectName);
+    postData.append("startTime", startTime);
+    postData.append("endTime", endTime);
     this.http
       .post<{ message: string; post: Post }>(
         "http://localhost:3000/api/posts",
@@ -73,23 +74,24 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(id: string, taskName: string, projectName: string, startTime:string, endTime : string) {
     let postData: Post | FormData;
-    if (typeof image === "object") {
-      postData = new FormData();
-      postData.append("id", id);
-      postData.append("title", title);
-      postData.append("content", content);
-      postData.append("image", image, title);
-    } else {
+    // if (typeof image === "object") {
+    //   postData = new FormData();
+    //   postData.append("id", id);
+    //   postData.append("taskName", taskName);
+    //   postData.append("projectName", projectName);
+    //   postData.append("startTIme", startTIme);
+    //   postData.append("endTime", endTime);
+    // } else {
       postData = {
         id: id,
-        title: title,
-        content: content,
-        imagePath: image,
-        creator: null
+        taskName: taskName,
+        projectName: projectName,
+        startTime: startTime,
+        endTime: endTime
       };
-    }
+    // }
     this.http
       .put("http://localhost:3000/api/posts/" + id, postData)
       .subscribe(response => {

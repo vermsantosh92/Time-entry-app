@@ -47,8 +47,8 @@ router.put(
 
 router.get("",postController.getPost );
 
-router.get("/:id",postController.getPostWithId );
+// router.get("/:id",postController.getPostWithId );
 
-router.delete("/:id", checkAuth,  postController.deletePost);
+// router.delete("/:id", checkAuth,  postController.deletePost);
 
 module.exports = router;

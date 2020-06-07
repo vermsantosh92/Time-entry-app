@@ -22,6 +22,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
@@ -34,6 +35,13 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
 import { ErrorInterceptor } from "./error-enterceptor";
 import { ErrorComponent } from "./error/error.component";
 import { FooterComponent } from './footer/footer.component';
+import { TimerComponent } from './timer/timer.component';
+import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+
+import { CountdownModule } from 'ngx-countdown';
+import { ButtonComponent } from './button/button.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +52,10 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     SignupComponent,
     ErrorComponent,
-    FooterComponent
+    FooterComponent,
+    TimerComponent,
+    ButtonComponent
+
   ],
   imports: [
     BrowserModule,
@@ -61,6 +72,12 @@ import { FooterComponent } from './footer/footer.component';
     MatPaginatorModule,
     HttpClientModule,
     MatDialogModule,
+    MatSelectModule,
+    MatListModule,
+    MatTableModule,
+    CountdownModule,
+
+
 
   ],
   providers: [
