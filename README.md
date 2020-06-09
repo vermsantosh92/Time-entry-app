@@ -4,9 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 Use npm install to install all node dependenciess. 
+For Angular :
+cd mean-app
+Run 'ng serve' for a dev server. Navigate to `http://localhost:4200`. The app will automatically reload if you change any of the source files.
+For Node server : 
 cd backend
-Run 'npm run start:server' for a dev server. Navigate to `http://localhost:3000`. The app will automatically reload if you change any of the source files.
-
+Run 'npm run start:server'
 
 ## Code scaffolding.
 
