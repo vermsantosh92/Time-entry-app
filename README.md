@@ -10,6 +10,7 @@ Run 'ng serve' for a dev server. Navigate to `http://localhost:4200`. The app wi
 For Node server : 
 cd backend
 Run 'npm run start:server'
+Navigate to `http://localhost:3000`.
 
 ## Code scaffolding.
 
