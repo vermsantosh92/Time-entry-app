@@ -3,10 +3,10 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
 
 ## Development server
-Use npm install to install all node dependenciess.
-Run 'ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Use npm install to install all node dependenciess. 
+cd backend
+Run 'npm run start:server' for a dev server. Navigate to `http://localhost:3000`. The app will automatically reload if you change any of the source files.
 
-for backend - npm run start:server 
 
 ## Code scaffolding.
 
